@@ -8,7 +8,7 @@ contract FileSystem {
         string sex;
         string ic;
         string dob;
-        string vaccination_status;
+        string vaccinationStatus;
         string date;
     }
 
@@ -21,7 +21,7 @@ contract FileSystem {
         string ic,
         string dob,
         string date,
-        string vaccination_status
+        string vaccinationStatus
     );
 
     function createCert(
@@ -31,10 +31,10 @@ contract FileSystem {
         string memory ic,
         string memory dob,
         string memory date,
-        string memory vaccination_status
+        string memory vaccinationStatus
     ) public {
-        store[id] = item(name, sex, ic, dob, vaccination_status, date);
-        emit data(id, name, sex, ic, dob, vaccination_status, date);
+        store[id] = item(name, sex, ic, dob, vaccinationStatus, date);
+        emit data(id, name, sex, ic, dob, vaccinationStatus, date);
     }
 
     function fetchCert(string memory id) public view returns (item memory) {

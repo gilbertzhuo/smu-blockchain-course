@@ -8,8 +8,10 @@ export default function System(){
   const [click, setClick] = useState(false);
   const [hash, setHash] = useState("");
   const [name, setName] = useState("");
-  const [course, setCourse] = useState("");
-  const [issuer, setIssuer] = useState("");
+  const [sex, setSex] = useState("");
+  const [ic, setIc] = useState("");
+  const [dob, setDob] = useState("");
+  const [vaccinationStatus, setVaccinationStatus] = useState("");
   const [date, setDate] = useState("");
   const [loaded, setLoaded] = useState(false);
   const [account, setAccount] = useState([]);
@@ -64,13 +66,14 @@ export default function System(){
   };
 
   const handleSubmit = async() => {
-    await contract.methods.createCert(hash, name,course,issuer,date).send({from: account[0]});
+    await contract.methods.createCert(hash, name, sex, ic, dob, vaccinationStatus, date).send({from: account[0]});
     setHash("");
     setName("");
-    setCourse("");
+    setSex("");
+    setIc("");
+    setDob("");
     setDate("");
-    setIssuer("");
-    
+    setVaccinationStatus("");
   }
 
   const hiddenFileInput = React.useRef(null);
@@ -106,12 +109,20 @@ export default function System(){
       <input value={name} onChange={(e)=>setName(e.target.value)}/>
     </Form.Field>
     <Form.Field >
-      <label>Course Name:</label>
-      <input value={course} onChange={(e)=>setCourse(e.target.value)}/>
+      <label>Sex:</label>
+      <input value={sex} onChange={(e)=>setSex(e.target.value)}/>
     </Form.Field>
     <Form.Field >
-      <label>Issuer:</label>
-      <input value={issuer} onChange={(e)=>setIssuer(e.target.value)}/>
+      <label>NRIC:</label>
+      <input value={ic} onChange={(e)=>setIc(e.target.value)}/>
+    </Form.Field>
+    <Form.Field >
+      <label>Date of Birth:</label>
+      <input value={dob} onChange={(e)=>setDob(e.target.value)}/>
+    </Form.Field>
+    <Form.Field >
+      <label>Vaccination Status:</label>
+      <input value={vaccinationStatus} onChange={(e)=>setVaccinationStatus(e.target.value)}/>
     </Form.Field>
     <Form.Field >
       <label>Date:</label>
